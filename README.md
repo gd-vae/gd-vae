@@ -35,6 +35,9 @@ Python 3 (ideally >= 3.7).  In particular, be sure to install the following pack
 torch>=1.9.0, scikit-learn>=1.0.0, numpy>=1.19.0, matplotlib>=3.0.0.  For example, 
 a quick install would be
 ```pip install torch scikit-learn numpy matplotlib```
+An even better way to install would be first to install pytorch packages
+tuned to your machine from [pytorch install](https://pytorch.org/) then 
+the other packages.
 
 __Use__
 
