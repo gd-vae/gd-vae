@@ -1,0 +1,1 @@
+For more information on how to use this package, please see the [Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) and look at the [Examples](https://github.com/gd_vae/gd_vae/tree/master/examples).
