@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# coding: utf-8
-
+#
 # ### GD-VAE: Constrained Mechanics
 # [http://atzberger.org](http://atzberger.org)
 # 
