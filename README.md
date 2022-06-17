@@ -30,9 +30,10 @@ To test the package installed use
 
 __Packages__ 
 
-Please be sure to install [PyTorch](https://pytorch.org/) package >= 1.2.0 with
-Python 3 (ideally >= 3.7).  Also, be sure to install the following packages:
-torch>=1.9.0, scikit-learn>=1.0.0, numpy>=1.19.0, matplotlib>=3.0.0.  For example,
+Please be sure to install [pytorch](https://pytorch.org/) package >= 1.9.0 with
+Python 3 (ideally >= 3.7).  In particular, be sure to install the following packages:
+torch>=1.9.0, scikit-learn>=1.0.0, numpy>=1.19.0, matplotlib>=3.0.0.  For example, 
+a quick install would be
 ```pip install torch scikit-learn numpy matplotlib```
 
 __Use__
