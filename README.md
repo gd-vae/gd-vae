@@ -21,12 +21,12 @@ __Quick Start__
 
 For use of the package see the [examples
 page](https://github.com/gd-vae/gd-vae/tree/master/examples).  For getting
-the latest version use ```pip install --upgrade geode-pytorch```.  More
+the latest version use ```pip install --upgrade gd-vae-pytorch```.  More
 information on the structure of the package also can be found on the
 [documentation page](https://github.com/gd-vae/gd-vae/tree/master/docs).
 
 If previously installed the package, please update to the latest version using
-```pip install --upgrade gdvae-pytorch```
+```pip install --upgrade gd-vae-pytorch```
 
 To test the package installed use 
 ```import gd_vae_pytorch.tests.t1 as t1; t1.run()```
