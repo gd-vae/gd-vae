@@ -20,8 +20,7 @@ __Quick Start__
 ```pip install -U gd-vae-pytorch```
 
 For use of the package see the [examples
-page](https://github.com/gd-vae/gd-vae/tree/master/examples).  For getting
-the latest version use ```pip install --upgrade gd-vae-pytorch```.  More
+page](https://github.com/gd-vae/gd-vae/tree/master/examples).  More
 information on the structure of the package also can be found on the
 [documentation page](https://github.com/gd-vae/gd-vae/tree/master/docs).
 
