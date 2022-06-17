@@ -26,13 +26,13 @@ If previously installed the package, please update to the latest version using
 ```pip install --upgrade gd-vae-pytorch```
 
 To test the package installed use 
-```import gd_vae_pytorch.tests.t1 as t1; t1.run()```
+```python -c "import gd_vae_pytorch.tests.t1 as t1; t1.run()"```
 
 __Packages__ 
 
 Please be sure to install [PyTorch](https://pytorch.org/) package >= 1.2.0 with
 Python 3 (ideally >= 3.7).  Also, be sure to install the following packages:
-numpy>=1.16, scipy>=1.3, matplotlib>=3.0.
+numpy>=1.19, scikit-learn>=1.0, matplotlib>=3.0.
 
 __Use__
 
