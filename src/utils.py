@@ -6,7 +6,7 @@ r"""
 """
 # more information: http://atzberger.org/
 
-import os,matplotlib,matplotlib.pyplot as plt,numpy as np,pickle;
+import os,matplotlib,matplotlib.pyplot as plt,numpy as np,pickle,shutil;
 from collections import OrderedDict;
 
 def save_fig(base_filename,extra_label='',flag_verbose=True,
