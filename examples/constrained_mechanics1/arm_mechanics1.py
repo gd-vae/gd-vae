@@ -100,7 +100,7 @@ print("num_dim_z = " + str(num_dim_z));
 # display system information
 print(""); print("torch.__version__ = " + str(torch.__version__));
 print("numpy.__version__ = " + str(np.__version__));
-print("gd_vae.vae.__version__ = " + str(gd_vae.vae.__version__));
+print("gd_vae.__version__ = " + str(gd_vae.__version__));
 
 # configure the device(s) to use
 if torch.cuda.is_available():  
