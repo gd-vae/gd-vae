@@ -9,8 +9,6 @@
 <img src="zdoc_img/manifold_latent_space1.png" width = "38%" />
 </div>
 
-__GD-VAE: (PyTorch Implementation)__
-
 **Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides machine learning methods for learning embedding maps for nonlinear dynamics into general latent spaces.  This includes methods for standard latent spaces or manifold latent spaces with specified geometry and topology.  The manifold latent spaces can be based on analytic expressions or general point cloud representations.  
 
 __Quick Start__
@@ -20,13 +18,12 @@ __Quick Start__
 ```pip install -U gd-vae-pytorch```
 
 For use of the package see the [examples
-page](https://github.com/gd-vae/gd-vae/tree/master/examples).  For getting
-the latest version use ```pip install --upgrade geode-pytorch```.  More
+page](https://github.com/gd-vae/gd-vae/tree/master/examples).  More
 information on the structure of the package also can be found on the
 [documentation page](https://github.com/gd-vae/gd-vae/tree/master/docs).
 
 If previously installed the package, please update to the latest version using
-```pip install --upgrade gdvae-pytorch```
+```pip install --upgrade gd-vae-pytorch```
 
 To test the package installed use 
 ```import gd_vae_pytorch.tests.t1 as t1; t1.run()```
@@ -71,5 +68,5 @@ and NSF Grant DMS-1616353.
 
 ----
 
-[Examples](https://github.com/gd-vae/gd_vae/tree/master/examples) | [Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) | [Atzberger Homepage](http://atzberger.org/)
+[Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) | [Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) | [Atzberger Homepage](http://atzberger.org/)
 
