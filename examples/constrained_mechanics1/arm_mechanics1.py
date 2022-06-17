@@ -41,9 +41,7 @@ import pkg,pkg.datasets,pkg.vis,pkg.geometry,pkg.model_utils;
 # script name without extension
 script_base_name = 'arm_mechanics1'; 
 
-
 # #### Parameters 
-
 # setup the parameters
 batch_size = int(1e3); # int(1e2);
 flag_save_fig = True;
@@ -129,7 +127,6 @@ s_data.update({'comment':"",'torch.__version__':str(torch.__version__),
 
 
 # #### Generate Training Dataset
-
 if flag_dataset == 'arm1_torus':
     flag_model_type = 'arm1';
     dgen_type = 'arm1_torus'; s_data['dgen_type'] = dgen_type;
@@ -175,7 +172,6 @@ else:
 
 
 # #### Setup Model and Neural Network Architectures
-
 extra_params = {};
     
 if flag_model == 'gd_vae_nn1_R_n':
@@ -327,7 +323,6 @@ if flag_run_cell:
     print("Y.shape = " + str(Y.shape));
 
 # #### Train GD-VAE Model
-
 # setup training parameters
 num_epochs = int(1e6); learning_rate = 1e-4;
 #num_epochs = int(1e4); learning_rate = 1e-1;
@@ -437,7 +432,6 @@ while flag_quit is False:
 print("done training."); print("-"*80);
 
 # #### Show Prediction of the Learned Model
-
 # show prediction of the trained model
 flag_run_cell = True;
 if flag_run_cell:  
