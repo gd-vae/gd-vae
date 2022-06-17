@@ -10,8 +10,6 @@
 """
 # more information: http://atzberger.org/
 
-__version__ = '1.0.0';
-
 import torch,torch.nn as nn,numpy as np;
  
 def eval_tilde_L_B(theta,phi,X_batch,**extra_params):
@@ -127,7 +125,7 @@ def eval_tilde_L_B(theta,phi,X_batch,**extra_params):
 def loss_VAE_neg_tilde_L_B(X_batch,theta,phi,**extra_params):
   r"""
   Evaluates the VAE loss function based on ELBO estimator of the negative 
-  log probabiliy of the data set X, loss = math:`-\tilde{\mathcal{L}}_B`
+  log probabiliy of the data set X, loss = :math:`-\tilde{\mathcal{L}}_B`
 
   Parameters:
     X_batch (Tensor): collection of training samples.
