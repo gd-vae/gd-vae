@@ -1,5 +1,7 @@
 import torch; import numpy as np;
 
+# more information: http://atzberger.org/
+
 class GenDataArm1Rigid(torch.utils.data.Dataset):    
   r"""Generates samples of data."""
   
@@ -235,3 +237,4 @@ class GenDataArm1Klein(torch.utils.data.Dataset):
     self.samples_X = self.samples_X.to(device);
         
     return self;
+

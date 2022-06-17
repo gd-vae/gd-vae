@@ -1,32 +1,9 @@
 import torch; import numpy as np; import pickle,os,sys;
-
-# temporary path for testing
-#sys.path.append('../../'); # insert in slot 1, so searched first
-path_add = os.path.join('..','..');
-#sys.path.insert(1,'../../'); # insert in slot 1, so searched first
-sys.path.insert(1,path_add); # insert in slot 1, so searched first
-path_add = '.';
-#sys.path.insert(1,'../../'); # insert in slot 1, so searched first
-sys.path.insert(1,path_add); # insert in slot 1, so searched first
-#print("sys.path = " + str(sys.path));
-
-import src; 
-import src.nn; import src.utils; import src.vae; import src.geo_map; import src.log;
-gd_vae = src;
-
+import gd_vae_pytorch as gd_vae,gd_vae_pytorch.geo_map,gd_vae_pytorch.vae;
+import gd_vae_pytorch.nn,gd_vae_pytorch.utils; 
 from . import geometry as pkg_geometry;
-#from . import geometry;
 
-print_log = print;
-
-# import gd_vae.AtzVariationalAutoencoder as AtzVAE;
-
-# # release version
-#
-# import gd_vae_pytorch; 
-# import gd_vae_pytorch.nn; import gd_vae_pytorch.utils; import gd_vae_pytorch.vae; 
-# import gd_vae_pytorch.geo_map; import gd_vae_pytorch.log;
-# gd_vae = gd_vae_pytorch;
+# more information: http://atzberger.org/
 
 def create_model_gd_vae_nn1(**params):
   params_theta, params_phi, device = tuple(map(params.get,['params_theta','params_phi', 'device']));
@@ -43,7 +20,6 @@ def create_model_gd_vae_nn1(**params):
       seq_list.append(torch.nn.LeakyReLU(negative_slope=1e-6));
 
   if manifold_map is not None:
-    #seq_list.append(ManifoldCirclesLayer(num_circles=2,device=device));
     seq_list.append(manifold_map);
 
   model_mu = torch.nn.Sequential(*seq_list).to(device);
@@ -68,7 +44,6 @@ def create_model_gd_vae_nn1(**params):
       seq_list.append(torch.nn.LeakyReLU(negative_slope=1e-6));
 
   if manifold_map is not None:
-    #seq_list.append(ManifoldCirclesLayer(num_circles=2,device=device));
     seq_list.append(manifold_map);
 
   model_mu = torch.nn.Sequential(*seq_list).to(device);    
@@ -443,6 +418,3 @@ def test_model_errors(theta,phi,**extra_params):
     results.update({'L1_err_list':np.array(L1_err_list),'L2_err_list':np.array(L2_err_list),'sigma_list':np.array(sigma_list)});    
     return results;
 
-def set_print_handle(print_handle):
-  global print_log;
-  print_log = print_handle;

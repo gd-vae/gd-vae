@@ -1,5 +1,7 @@
 import torch,numpy as np;
 
+# more information: http://atzberger.org/
+
 # setup surface description for sigma(u)
 def get_manifold_sigma_info_klein1(x,params=None):
   # assumes x is 4D point on Klein bottle
@@ -13,12 +15,9 @@ def get_manifold_sigma_info_klein1(x,params=None):
   #  x_4 & = & b\sin(u_2)\sin\left(\frac{u_1}{2}\right).
   # \end{eqnarray}
   #
-  #print_log("get_manifold_sigma_info_klein1");
   #device = params['device'];  
   params_klein = params['params_klein'];
   device = x.device;
-  #a,b,c,device = tuple(map(params_klein.get,['a','b','c','device']));
-  #params_k = {'a':a,'b':b,'c':c,'device':device};
 
   results = {}; num_samples = x.shape[0]; num_dim_x = x.shape[1]; num_dim_u = 2;
 
@@ -40,7 +39,6 @@ def get_manifold_sigma_info_klein1(x,params=None):
   #   sigma_k with shape = [num_samples_u,num_dim_x]
   #   d_ui_sigma_k[II,i,k]  with shape = [num_samples_u,num_dim_u,num_dim_x]
   #   d_ui_uj_sigma_k with shape = [num_samples_u,num_dim_u,num_dim_u,num_dim_x]  
-  #pdb.set_trace();
   with torch.enable_grad():
     sigma_k = torch.zeros(num_samples,num_dim_x,device=device);
     d_ui_sigma_k = torch.zeros(num_samples,num_dim_u,num_dim_x,device=device);

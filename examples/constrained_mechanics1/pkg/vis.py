@@ -1,19 +1,9 @@
 import numpy as np; import matplotlib; import matplotlib.pyplot as plt; 
 import os,sys,pickle;
+import gd_vae_pytorch as gd_vae,gd_vae_pytorch.geo_map,gd_vae_pytorch.vae;
+import gd_vae_pytorch.nn,gd_vae_pytorch.utils; 
 
-# temporary path for testing
-#sys.path.append('../../'); # insert in slot 1, so searched first
-path_add = os.path.join('..','..');
-#sys.path.insert(1,'../../'); # insert in slot 1, so searched first
-sys.path.insert(1,path_add); # insert in slot 1, so searched first
-path_add = '.';
-#sys.path.insert(1,'../../'); # insert in slot 1, so searched first
-sys.path.insert(1,path_add); # insert in slot 1, so searched first
-#print("sys.path = " + str(sys.path));
-
-import src; 
-import src.nn; import src.utils; import src.vae; import src.geo_map; import src.log;
-gd_vae = src;
+# more information: http://atzberger.org/
 
 def atz_get_lims_x(ll,figsize):
   a1 = ll[0]; b1 = ll[1]; c = figsize[1]/figsize[0]; a2 = c*a1; b2 = c*b1;
