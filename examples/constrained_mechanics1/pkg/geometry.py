@@ -102,8 +102,9 @@ def sample_klein_bottle_points_R4(params=None):
     
   num_dim_x = 4; num_samples_u = n1*n2;    
   pts_u1 = torch.linspace(0,2*np.pi,n1,device=device);
-  pts_u2 = torch.linspace(0,2*np.pi,n2,device=device);
-  u1,u2 = torch.meshgrid(pts_u1,pts_u2,indexing='ij');
+  pts_u2 = torch.linspace(0,2*np.pi,n2,device=device);    
+  #u1,u2 = torch.meshgrid(pts_u1,pts_u2,indexing='ij'); # use in pytorch 1.11.0 or later
+  u1,u2 = torch.meshgrid(pts_u1,pts_u2); # pytorch 1.11.0 or earlier
   u1 = u1.flatten(); u2 = u2.flatten();
   u = torch.stack((u1,u2),dim=1);
 
