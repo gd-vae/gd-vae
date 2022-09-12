@@ -59,7 +59,7 @@ R. Lopez and P. J. Atzberger, arXiv:2206.05183, (2022),
 @article{lopez_atzberger_gd_vae_2022,
   title={GD-VAEs: Geometric Dynamic Variational Autoencoders for 
   Learning Non-linear Dynamics and Dimension Reductions},
-  author={Ryan Lopez, Paul J. Atzberger},
+  author={Ryan Lopez and Paul J. Atzberger},
   journal={arXiv:2206.05183},  
   month={June},
   year={2022},
