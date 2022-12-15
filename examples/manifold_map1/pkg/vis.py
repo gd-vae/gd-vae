@@ -31,6 +31,11 @@ def plot_klein_R3_immersion(params_klein,**kwargs):
     ms = kwargs['ms'];
   else:
     ms = 10;  
+
+  if 'flag_show' in kwargs:
+    flag_show = kwargs['flag_show'];
+  else:
+    flag_show = False;  
     
   # Plot the results (projection and the gradients)
   fig = plt.figure(figsize=(8,6),facecolor='white');
@@ -48,5 +53,9 @@ def plot_klein_R3_immersion(params_klein,**kwargs):
   
   #plt.legend();
 
-  plt.draw();
+  if flag_show:
+    plt.show();
+  else:
+    plt.draw();
+
 
