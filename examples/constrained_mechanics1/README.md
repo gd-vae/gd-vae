@@ -1,5 +1,5 @@
-<p align="left">
-<img src="zdoc_img/arm_diagram2.png" width="99%"> 
+<p align="center">
+<img src="zdoc_img/arm_diagram2.png" width="90%"> 
 </p>
 
 For more information on how to use this package, see the example Jupyter notebooks and python scripts above.  
