@@ -1,6 +1,8 @@
 import torch; import numpy as np; import pickle,os,sys;
+
 import gd_vae_pytorch as gd_vae,gd_vae_pytorch.geo_map,gd_vae_pytorch.vae;
 import gd_vae_pytorch.nn,gd_vae_pytorch.utils; 
+
 from . import geometry as pkg_geometry;
 
 # more information: http://atzberger.org/
@@ -9,15 +11,32 @@ def create_model_gd_vae_nn1(**params):
   params_theta, params_phi, device = tuple(map(params.get,['params_theta','params_phi', 'device']));
 
   # -- theta (decoder)
-  layer_sizes, layer_biases, manifold_map = tuple(map(params_theta.get,['layer_sizes', 'layer_biases', 
-                                                                        'manifold_map']));
+  layer_sizes, layer_biases, manifold_map, log_sigma_sq_0 = tuple(map(params_theta.get,
+                                                                 ['layer_sizes', 'layer_biases', 
+                                                                  'manifold_map','log_sigma_sq_0']));
+
+  activation_type, params_activation = tuple(map(params_theta.get,['activation_type','params_activation']));
+
+  if log_sigma_sq_0 is None:
+    log_sigma_sq_0 = 0.1;
+
+  if activation_type is None:
+    activation_type = 'LeakyReLU';
+
+  if params_activation is None:
+    if activation_type == 'LeakyReLU':
+      params_activation = {'negative_slope':1e-6}; # default 
 
   ss = layer_sizes; bb = layer_biases;
   seq_list = []; num_layers = len(layer_sizes) - 1;
   for k in range(0,num_layers):
     seq_list.append(torch.nn.Linear(ss[k],ss[k+1],bias=bb[k]));
     if k != (num_layers - 1):
-      seq_list.append(torch.nn.LeakyReLU(negative_slope=1e-6));
+      if activation_type == 'LeakyReLU':
+        p = params_activation;
+        seq_list.append(torch.nn.LeakyReLU(negative_slope=p['negative_slope']));
+      else:
+        raise Exception("Not recognized, activation_type = " + str(activation_type));
 
   if manifold_map is not None:
     seq_list.append(manifold_map);
@@ -27,21 +46,44 @@ def create_model_gd_vae_nn1(**params):
   model_log_sigma_sq = torch.nn.Sequential(
     gd_vae.nn.AtzLearnableTensorLayer(tensor_size=(1,layer_sizes[-1]),device=device),    
   ).to(device);
+  model_log_sigma_sq[0].data = log_sigma_sq_0;
 
   theta = {};
-  nu = torch.Tensor([0.5]).to(device);    
-  theta.update({'model_mu':model_mu,'model_log_sigma_sq':model_log_sigma_sq,'nu':nu});
+  theta.update({'model_mu':model_mu,'model_log_sigma_sq':model_log_sigma_sq});
 
   # -- phi (encoder)  
-  layer_sizes, layer_biases, manifold_map = tuple(map(params_phi.get,['layer_sizes', 'layer_biases', 
-                                                                      'manifold_map']));
+  layer_sizes, layer_biases, manifold_map, nu, beta, log_sigma_sq_0 = tuple(map(params_phi.get,
+                                                                     ['layer_sizes', 'layer_biases', 
+                                                                      'manifold_map','nu','beta','log_sigma_sq_0']));
+
+  activation_type, params_activation = tuple(map(params_phi.get,['activation_type','params_activation']));
+
+  if nu is None:
+    nu = 0.5;
+
+  if beta is None:
+    beta = 1.0;
+
+  if log_sigma_sq_0 is None:
+    log_sigma_sq_0 = 0.1;
+
+  if activation_type is None:
+    activation_type = 'LeakyReLU';
+
+  if params_activation is None:
+    if activation_type == 'LeakyReLU':
+      params_activation = {'negative_slope':1e-6}; # default 
 
   ss = layer_sizes; bb = layer_biases;
   seq_list = []; num_layers = len(layer_sizes) - 1;
   for k in range(0,num_layers):
     seq_list.append(torch.nn.Linear(ss[k],ss[k+1],bias=bb[k]));
     if k != num_layers - 1:
-      seq_list.append(torch.nn.LeakyReLU(negative_slope=1e-6));
+      if activation_type == 'LeakyReLU':
+        p = params_activation;
+        seq_list.append(torch.nn.LeakyReLU(negative_slope=p['negative_slope']));
+      else:
+        raise Exception("Not recognized, activation_type = " + str(activation_type));
 
   if manifold_map is not None:
     seq_list.append(manifold_map);
@@ -51,9 +93,13 @@ def create_model_gd_vae_nn1(**params):
   model_log_sigma_sq = torch.nn.Sequential(
     gd_vae.nn.AtzLearnableTensorLayer(tensor_size=(1,layer_sizes[-1]),device=device),
   ).to(device);
+  model_log_sigma_sq[0].data = log_sigma_sq_0;
+
+  nu = torch.Tensor([nu]).to(device);    
+  beta = torch.Tensor([beta]).to(device);    
 
   phi = {}; 
-  phi.update({'model_mu':model_mu,'model_log_sigma_sq':model_log_sigma_sq});
+  phi.update({'model_mu':model_mu,'model_log_sigma_sq':model_log_sigma_sq,'nu':nu,'beta':beta});
 
   model = {'theta':theta,'phi':phi};
 
@@ -76,7 +122,7 @@ def get_data_of_model_select_arm1(theta,phi):
   theta_model_mu, theta_model_log_sigma_sq = tuple(map(theta.get,['model_mu','model_log_sigma_sq']));
   phi_model_mu, phi_model_log_sigma_sq = tuple(map(phi.get,['model_mu','model_log_sigma_sq']));
     
-  d['nu_theta'] = theta['nu'];
+  d['nu_phi'] = phi['nu'];
 
   mm = theta_model_mu;
   ll = list(mm[0].parameters());
@@ -194,7 +240,7 @@ def print_params_select_arm1(theta,phi,flag_model_type):
         
     print("log_sigma_sq_phi_tensor.shape = " + str(d.log_sigma_sq_phi_tensor.shape));
 
-    print("nu_theta = " + str(d.nu_theta));
+    print("nu_phi = " + str(d.nu_phi));
 
 def print_params_select(theta,phi,flag_model_type):    
   if flag_model_type == 'arm1':
@@ -278,7 +324,7 @@ def init_model_arm1_pretrain_decoder1_init(theta,phi):
     if phi['model_log_sigma_sq'] is not None:      
       d.log_sigma_sq_phi_tensor[:] = -5;
 
-    d.nu_theta[0] = 0.5;    
+    #d.nu_phi[0] = 0.5;    
       
 def init_model_arm1_rand1(theta,phi):
     flag_model_type = 'arm1';
@@ -307,7 +353,7 @@ def init_model_arm1_rand1(theta,phi):
     if phi['model_log_sigma_sq'] is not None:
       d.log_sigma_sq_phi_tensor[:] = -5;
 
-    d.nu_theta[0] = 0.5;    
+    #d.nu_theta[0] = 0.5;    
           
 def test_model_errors(theta,phi,**extra_params):
     

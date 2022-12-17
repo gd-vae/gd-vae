@@ -108,6 +108,7 @@ class GenDataArm1Rigid(torch.utils.data.Dataset):
 
       XX = ell_list[:,k].unsqueeze(1)*v1;
       R = GenDataArm1Rigid.create_Rotation(theta_list[:,k],**params_R);
+      #R = R.float(); # for now convert to float to match XX type
       X2 = X1.unsqueeze(2) + torch.bmm(R,XX.unsqueeze(2)); X2 = X2.squeeze(2);
 
       if k == 0:
