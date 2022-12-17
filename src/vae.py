@@ -51,10 +51,13 @@ def eval_tilde_L_B(theta,phi,X_batch,**extra_params):
   num_dim_z  = extra_params['num_dim_z']; # number of dimensions for z
   device     = extra_params['device']; # devide to use
   
-  if 'beta' in extra_params:
+  if 'beta' in extra_params: # over-rides other values specified (such as in phi model) 
     beta = extra_params['beta']; # KL weight term, as in beta-VAEs 
   else:
-    beta = 1.0; # gives default value, standard VAEs
+    if 'beta' in phi:  # use value from phi model
+      beta = phi['beta'];
+    else:
+      beta = 1.0; # gives default value, standard VAEs
       
   return_extra_vals = None;
   if 'return_extra_vals' in extra_params:
@@ -63,7 +66,7 @@ def eval_tilde_L_B(theta,phi,X_batch,**extra_params):
   model_mu_theta = theta['model_mu']; # model for the mean (neural network)
   model_log_sigma_sq_theta = theta['model_log_sigma_sq']; # model for the covariance on log scale (neural network)
     
-  nu = theta['nu']; # the nu value for the latent-space prior Gaussian distribution
+  nu = phi['nu']; # the nu value for the latent-space prior Gaussian distribution
     
   model_mu_phi = phi['model_mu']; # model for the mean (neural network)
   model_log_sigma_sq_phi = phi['model_log_sigma_sq']; # model for the covariance on log scale (neural network)
@@ -157,6 +160,105 @@ def loss_VAE_neg_tilde_L_B(X_batch,theta,phi,**extra_params):
 
   return loss_val;
 
+def dyvae_loss(encoder_mean, encoder_log_variance, decoder_mean, 
+               latent_map, latent_map_params, 
+               input, target, **params):
+  r"""
+  Evaluates the VAE loss function based on ELBO estimator of the negative 
+  log probabiliy of the data set X, along with reconstruction and other regularizations
+  for predicting dynamics (see paper).  Uses MSE and KL divergence for reconstruction
+  and prediction losses.
+
+  Parameters:     
+    encoder_mean (torch.nn.Module): the model for the mean encoding for the input.
+    encoder_log_variance (torch.nn.Module): the variance to use for encoding noise regularization.
+    decoder_mean (torch.nn.Module): the model for the mean decoding for the output. 
+    latent_map (torch.nn.Module):  the latent space mapping.
+    latent_map_params (torch.nn.Module):  the latent space mapping parameters.
+    input (Tensor): x input to the GD-VAE.
+    target (Tensor): X target output expected from VAE for loss.
+    params (dict): additional parameters (see examples and codes).     
+    
+  Returns:
+    **loss** *(Tensor)* -- loss evaluation comparing VAE output and target.
+
+  **extra_params** [members]
+
+  =============================  =======================================
+  **Property**                   **Description**
+  -----------------------------  ---------------------------------------    
+  num_monte_carlo_samples        number of samples to use in MC estimators
+  latent_prior_std_dev           standard deviation for the latent space prior
+  gamma                          strength of the reconstruction term
+  beta                           Kullback-Leibler weight term 
+                                 as in :math:`\beta`-VAEs   
+  device                         cpu, gpu, or other device to use  
+  mse_loss                       Mean-Squared-Error (mse) loss of torch.nn  
+  =============================  =======================================
+
+  """
+      
+  # dereference parameters    
+  beta,gamma,num_monte_carlo_samples,latent_prior_std_dev,device,mse_loss = tuple(map(params.get,['beta','gamma',
+                                                                                                  'num_monte_carlo_samples',
+                                                                                                  'latent_prior_std_dev',
+                                                                                                  'device','mse_loss']));
+
+  if mse_loss is None: # setup mse_loss if not created yet (and save in params for future calls)
+    mse_loss = torch.nn.MSELoss();
+    params.update({'mse_loss':mse_loss});
+
+  nu = latent_prior_std_dev;  
+
+  # compute latent representation
+  latent_mean = encoder_mean(input);
+  latent_log_variance = encoder_log_variance(input);
+
+  # compute common terms
+  latent_variance = torch.exp(latent_log_variance);
+  latent_std_dev = torch.sqrt(latent_variance);
+  latent_dim = latent_mean.shape[-1];
+
+  # compute regularization term
+  kl_divergence_term_1 = 0.5 * nu**(-2) * torch.sum(latent_variance + latent_mean**2, 1); 
+  kl_divergence_term_2 = 0.5 * latent_dim * (torch.log(nu**2)-1);
+  kl_divergence_term_3 = -0.5 * torch.sum(latent_log_variance, 1);
+  kl_divergence = kl_divergence_term_1 + kl_divergence_term_2 + kl_divergence_term_3; #shape: [batch_size]
+  kl_divergence = torch.mean(kl_divergence);
+
+  # reshape first dimension (batch size -> batch size * num mc samples) for Monte Carlo (mc) computation of reconstruction 
+  # and prediction terms
+  latent_mean_mc = torch.repeat_interleave(latent_mean, num_monte_carlo_samples, dim=0);
+  latent_std_dev_mc = torch.repeat_interleave(latent_std_dev, num_monte_carlo_samples, dim=0);
+  input_mc = torch.repeat_interleave(input, num_monte_carlo_samples, dim=0);
+  target_mc = torch.repeat_interleave(target, num_monte_carlo_samples, dim=0);
+
+  # compute reconstruction term
+  latent_values_mc = latent_mean_mc + latent_std_dev_mc * torch.randn(latent_mean_mc.shape); # reparameterization trick
+  reconstructed_samples = decoder_mean(latent_values_mc);
+  reconstruction_loss = mse_loss(input_mc, reconstructed_samples);
+
+  # compute prediction term
+  latent_values_evolved_mc = latent_map(latent_values_mc,latent_map_params);
+  predicted_samples = decoder_mean(latent_values_evolved_mc);
+  prediction_loss = mse_loss(target_mc, predicted_samples);
+
+  # compute DYVAE loss
+  total_loss = prediction_loss + gamma*reconstruction_loss + beta*kl_divergence;
+
+  return total_loss;
+
+def loss_relative(predicted, target):
+  r"""
+  L1-relative loss from element-wise differences between tensors.
+  """
+
+  diff_flat = (predicted - target).flatten();
+  target_flat = target.flatten();
+  loss = torch.sum(torch.abs(diff_flat),-1)/ (torch.sum(torch.abs(target_flat),-1));
+
+  return loss;
+
 def get_statistic_LL(theta,phi,X_batch,**extra_params):
 
   r"""
@@ -222,7 +324,7 @@ def get_statistic_LL(theta,phi,X_batch,**extra_params):
   eta = torch.randn(num_x,m,num_dim_x,device=device);
   x = mu_z + sigma_z*eta; # shape = [num_x,m,num_dim_x]
 
-  nu = theta['nu'];
+  nu = phi['nu'];
   p_z = torch.pow(2*np.pi*nu*nu,-num_dim_z/2.0)*torch.exp(-torch.sum(torch.pow(z,2)/(2.0*nu*nu),2)); # Gaussian density prior, shape = [num_x,m]
   p_x_given_z = torch.pow(torch.prod(2*np.pi*sigma_sq_z,2),-1.0/2.0)*torch.exp(-torch.sum(torch.pow(x - mu_z,2)/(2.0*sigma_sq_z),2)); # Gaussian density, shape = [num_x,m]
 
@@ -274,7 +376,7 @@ def get_statistic_KL(theta,phi,X_batch,**extra_params):
   z = mu_x + sigma_x*eta; # shape = [num_x,m,num_dim_z]
 
   # -- D_KL(q | p) = E_q[log(q(z|x))] - E_q[log(p(z))]
-  nu = theta['nu'];
+  nu = phi['nu'];
   p_z = torch.pow(2*np.pi*nu*nu,-num_dim_z/2.0)*torch.exp(-torch.sum(torch.pow(z,2)/(2.0*nu*nu),2)); # Gaussian density prior, shape = [num_x,m]
 
   # evaluate q(z|x) 
