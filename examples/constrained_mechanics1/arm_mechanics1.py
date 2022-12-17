@@ -118,7 +118,7 @@ print("device = " + str(device));
 s_data = {}; tensor_names = {};
 s_data.update({'comment':"",'torch.__version__':str(torch.__version__),
                'numpy.__version__':str(np.__version__),
-               'gd_vae.vae.__version__':str(gd_vae.vae.__version__),
+               'gd_vae.__version__':str(gd_vae.__version__),
                'num_dim_x':num_dim_x,'num_dim_x_tilde':num_dim_x_tilde,
                'total_N_xi':total_N_xi,'n_tau':n_tau,
                'device':str(device),'base_dir':base_dir,'run_name':run_name,
