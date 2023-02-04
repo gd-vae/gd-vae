@@ -9,7 +9,7 @@
 <img src="zdoc_img/manifold_latent_space1.png" width = "38%" />
 </div>
 
-**Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides machine learning methods for learning embedding maps for nonlinear dynamics into general latent spaces.  This includes methods for standard latent spaces or manifold latent spaces with specified geometry and topology.  The manifold latent spaces can be based on analytic expressions or general point cloud representations.  
+**Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides machine learning methods for learning embedding maps for nonlinear dynamics into general latent spaces.  This includes methods for standard latent spaces, $\mathbb{R}^n$, or manifold latent spaces with specified geometry and topology.  The manifold latent spaces can be based on analytic expressions or general point cloud representations.  
 
 __Quick Start__
 
