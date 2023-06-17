@@ -71,7 +71,7 @@ __Acknowledgements__
 This work was supported by grants from DOE Grant ASCR PHILMS DE-SC0019246 
 and NSF Grant DMS-1616353.
 
-__Reporting Bugs or Issues___
+__Reporting Bugs or Issues__
 For reporting bugs and issues please use the form [here](https://forms.gle/er7QoP4EeTMUFtZQ6).
 
 ----
