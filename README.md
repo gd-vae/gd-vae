@@ -71,6 +71,9 @@ __Acknowledgements__
 This work was supported by grants from DOE Grant ASCR PHILMS DE-SC0019246 
 and NSF Grant DMS-1616353.
 
+__Reporting Bugs or Issues___
+For reporting bugs and issues please use the form [here](https://forms.gle/er7QoP4EeTMUFtZQ6).
+
 ----
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) | [Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) | [Atzberger Homepage](http://atzberger.org/)
