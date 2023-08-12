@@ -1,7 +1,7 @@
 
 ## GD-VAE: Geometric Dynamic Variational Autoencoders
 
-<div  align="center">
+<div  align="left">
 <img src="zdoc_img/banner.png" width = "75%" />
 </div>
 
