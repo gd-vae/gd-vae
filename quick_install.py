@@ -3,7 +3,7 @@
 import subprocess;
 
 # try a few different methods
-flag_cont=True; nn = 1; 
+flag_cont=True; nn = 1; I = 0; 
 while flag_cont:
   print("."*80);
   args="install torch torchvision torchaudio";
