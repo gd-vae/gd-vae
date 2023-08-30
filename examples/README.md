@@ -1,5 +1,5 @@
 <p align="left">
-<img src="zdoc_img/manifold_map1.png" width="49%"> 
+<img src="zdoc_img/arm_diagram1.png" width="49%"> 
 </p>
 
 For more information on how to use this package, see the example Jupyter notebooks and python scripts above.  
