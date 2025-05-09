@@ -1,7 +1,7 @@
 ## GD-VAE: Geometric Dynamic Variational Autoencoders
 
 <div  align="center">
-<img src="zdoc_img/banner.png" width = "75%" />
+<img src="zdoc_img/gd_vae_img1.png" width = "85%" />
 </div>
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
@@ -14,6 +14,7 @@ into general latent spaces.  This includes methods for standard latent spaces
 or manifold latent spaces with specified geometry and topology.  The manifold
 latent spaces can be based on analytic expressions or general point cloud
 representations.  
+
 
 __Quick Start__
 
@@ -46,6 +47,12 @@ For information on how to use the package, see
 - [Examples Folder](https://github.com/gd-vae/gd-vae/tree/main/examples)
 
 - [Documentation Pages](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html)
+
+<div  align="left">
+<img src="zdoc_img/latent_space_01.png" width = "55%" />
+</div>
+
+
 
 __Additional Information__
 
