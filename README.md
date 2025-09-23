@@ -5,8 +5,9 @@
 </div>
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
-[Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) |
-[Paper](http://arxiv.org/abs/2206.05183)
+[Documentation](https://web.atzberger.org/gd_vae_docs/html/index.html) |
+[Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
+[arXiv](https://arxiv.org/abs/2206.05183)
 
 **Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides
 machine learning methods for learning embedding maps for nonlinear dynamics
@@ -46,7 +47,7 @@ For information on how to use the package, see
 
 - [Examples Folder](https://github.com/gd-vae/gd-vae/tree/main/examples)
 
-- [Documentation Pages](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html)
+- [Documentation Pages](https://web.atzberger.org/gd_vae_docs/html/index.html)
 
 <div  align="left">
 <img src="zdoc_img/latent_space_01.png" width = "55%" />
@@ -58,12 +59,29 @@ __Additional Information__
 
 When using this package, please cite: 
 
+
+*GD-VAEs: Geometric dynamic variational autoencoders for learning
+nonlinear dynamics and dimension reductions
+R. Lopez and P. J. Atzberger, Journal of Computational Physics, 114127, (2025), 
+[[paper]](https://doi.org/10.1016/j.jcp.2025.114127)
+```
+@article{lopez_atzberger_gdvae_2025,
+  title={GD-VAEs: Geometric dynamic variational autoencoders for learning
+         nonlinear dynamics and dimension reductions},
+  author={Lopez, Ryan and Atzberger, Paul J},
+  journal={Journal of Computational Physics},
+  pages={114127},
+  year={2025},
+  publisher={Elsevier}
+}
+```
+
 *GD-VAEs: Geometric Dynamic Variational Autoencoders for 
 Learning Non-linear Dynamics and Dimension Reductions,*
 R. Lopez and P. J. Atzberger, arXiv:2206.05183, (2022), 
 [[arXiv]](http://arxiv.org/abs/2206.05183).
 ```
-@article{lopez_atzberger_gd_vae_2022,
+@article{lopez_atzberger_gdvae_2022,
   title={GD-VAEs: Geometric Dynamic Variational Autoencoders for 
          Learning Non-linear Dynamics and Dimension Reductions},
   author={Ryan Lopez, Paul J. Atzberger},
@@ -81,8 +99,7 @@ and NSF Grant DMS-1616353.
 ----
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
-[Documentation](http://web.math.ucsb.edu/~atzberg/gd_vae_docs/html/index.html) |
+[Documentation](https://web.atzberger.org/gd_vae_docs/html/index.html) |
 [Paper](http://arxiv.org/abs/2206.05183) |
 [Atzberger Homepage](http://atzberger.org/)
-
 
