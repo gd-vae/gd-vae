@@ -101,6 +101,6 @@ and NSF Grant DMS-1616353.
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
 [Documentation](https://web.atzberger.org/gd_vae_docs/html/index.html) |
 [Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
-[arXiv](https://arxiv.org/abs/2206.05183)
+[arXiv](https://arxiv.org/abs/2206.05183) |
 [Atzberger Homepage](http://atzberger.org/)
 
