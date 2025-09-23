@@ -61,7 +61,7 @@ When using this package, please cite:
 
 
 *GD-VAEs: Geometric dynamic variational autoencoders for learning
-nonlinear dynamics and dimension reductions
+nonlinear dynamics and dimension reductions,*
 R. Lopez and P. J. Atzberger, Journal of Computational Physics, 114127, (2025), 
 [[paper]](https://doi.org/10.1016/j.jcp.2025.114127)
 ```
