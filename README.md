@@ -96,6 +96,9 @@ __Acknowledgements__
 This work was supported by grants from DOE Grant ASCR PHILMS DE-SC0019246 
 and NSF Grant DMS-1616353.
 
+__Additional Information__ <br>
+https://web.atzberger.org
+
 ----
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
