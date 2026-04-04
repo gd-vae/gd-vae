@@ -10,7 +10,7 @@
 
 ### GD-VAE: Geometric Dynamic Variational Autoencoders  
 
-Approaches for learning nonlinear dynamics by learning maps and embeddings into general latent spaces.  
+Deep learning approaches for nonlinear dynamics and embedding maps into general latent spaces.  
 
 #### 🚀 Core Functionality
 
