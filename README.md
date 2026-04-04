@@ -8,7 +8,7 @@
 [Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
 [arXiv](https://arxiv.org/abs/2206.05183)
 
-### GD-VAE: Geometric Dynamic Variational Autoencoders  
+### GD-VAEs: Geometric Dynamic Variational Autoencoders  
 
 Deep learning approaches for nonlinear dynamics and embedding maps into general latent spaces.  
 
