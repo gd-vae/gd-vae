@@ -1,4 +1,4 @@
-<div  align="center">
+<div  align="left">
 <img src="zdoc_img/gd_vae_img1.png" width = "85%" />
 </div>
 
