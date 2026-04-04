@@ -1,5 +1,3 @@
-## GD-VAE: Geometric Dynamic Variational Autoencoders
-
 <div  align="center">
 <img src="zdoc_img/gd_vae_img1.png" width = "85%" />
 </div>
@@ -9,13 +7,16 @@
 [Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
 [arXiv](https://arxiv.org/abs/2206.05183)
 
-### 💢 **Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides
-machine learning methods for learning embedding maps for nonlinear dynamics
-into general latent spaces.  This includes methods for standard latent spaces
-or manifold latent spaces with specified geometry and topology.  The manifold
-latent spaces can be based on analytic expressions or general point cloud
-representations.  
+### 💢 GD-VAE: Geometric Dynamic Variational Autoencoders  
 
+Approaches for learning nonlinear dynamics by learning maps and embeddings into general latent spaces.  
+
+#### 🚀 Core Functionality
+
+- **Manifold Latent Spaces:** Supports both standard and general geometries and topologies for the embeddings.
+- **Point-Cloud Representations:** Latent spaces can be represented non-analytically as point clouds.
+- **Adjoint Methods for General Latent Spaces:** Provides approaches for handling general latent spaces through solving adjoint problems.
+- **Modularity:** Readily supports use within existing models and data-processing pipelines.
 
 #### 🤖 __Quick Start__
 
