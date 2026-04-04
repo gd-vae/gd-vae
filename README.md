@@ -9,7 +9,7 @@
 [Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
 [arXiv](https://arxiv.org/abs/2206.05183)
 
-**Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides
+### 💢 **Geometric Dynamic Variational Autoencoders (GD-VAE) package** provides
 machine learning methods for learning embedding maps for nonlinear dynamics
 into general latent spaces.  This includes methods for standard latent spaces
 or manifold latent spaces with specified geometry and topology.  The manifold
@@ -17,7 +17,7 @@ latent spaces can be based on analytic expressions or general point cloud
 representations.  
 
 
-__Quick Start__
+#### 🤖 __Quick Start__
 
 *Method 1:* Install for python using pip
 
@@ -33,7 +33,7 @@ If previously installed the package, please update to the latest version using
 To test the package installed use 
 ```import gd_vae_pytorch.tests.t1 as t1; t1.run()```
 
-__Packages__ 
+#### 📦 __Packages__ 
 
 The pip install should automatically handle most of the dependencies.  If there are
 issues, please be sure to install [pytorch](https://pytorch.org/) package version >= 1.2.0.
@@ -55,7 +55,7 @@ For information on how to use the package, see
 
 
 
-__Additional Information__
+📚 __Additional Information__
 
 When using this package, please cite: 
 
