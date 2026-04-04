@@ -1,6 +1,7 @@
 <div  align="left">
 <img src="zdoc_img/gd_vae_img1.png" width = "77%" />
 </div>
+<br>
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
 [Documentation](https://web.atzberger.org/gd_vae_docs/html/index.html) |
@@ -42,7 +43,7 @@ The full set of dependencies can be found in the [requirements.txt](./requiremen
 You may want to first install pytorch package manually to configure it for your specific
 GPU system and platform.
 
-__Usage__
+#### 💡 __Usage__
 
 For information on how to use the package, see
 
@@ -53,7 +54,7 @@ For information on how to use the package, see
 <div  align="left">
 <img src="zdoc_img/latent_space_01.png" width = "55%" />
 </div>
-
+<br>
 
 
 📚 __Additional Information__
