@@ -14,6 +14,7 @@ Deep learning approaches for nonlinear dynamics and embedding maps into general 
 
 #### 🚀 Core Functionality
 
+- **Non-Linear State-Space Modeling:** Variational autoencoder methods for learning non-linear dynamics.
 - **Manifold Latent Spaces:** Supports both standard and general geometries and topologies for the embeddings.
 - **Point-Cloud Representations:** Latent spaces can be represented non-analytically as point clouds.
 - **Adjoint Methods for General Latent Spaces:** Provides approaches for handling general latent spaces through solving adjoint problems.
