@@ -1,5 +1,5 @@
 <div  align="left">
-<img src="zdoc_img/gd_vae_img1.png" width = "85%" />
+<img src="zdoc_img/gd_vae_img1.png" width = "77%" />
 </div>
 
 [Examples](https://github.com/gd-vae/gd-vae/tree/master/examples) |
@@ -7,7 +7,7 @@
 [Paper](https://doi.org/10.1016/j.jcp.2025.114127) |
 [arXiv](https://arxiv.org/abs/2206.05183)
 
-### 💢 GD-VAE: Geometric Dynamic Variational Autoencoders  
+### GD-VAE: Geometric Dynamic Variational Autoencoders  
 
 Approaches for learning nonlinear dynamics by learning maps and embeddings into general latent spaces.  
 
