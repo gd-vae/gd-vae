@@ -1,5 +1,5 @@
 <div  align="left">
-<img src="zdoc_img/gd_vae_img1.png" width = "77%" />
+<img src="zdoc_img/gd_vae_img1.png" width = "70%" />
 </div>
 <br>
 
