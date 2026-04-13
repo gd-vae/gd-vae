@@ -12,7 +12,7 @@
 
 Deep learning approaches for nonlinear dynamics and embedding maps into general latent spaces.  
 
-#### 🚀 Core Functionality
+#### 🔵 Core Functionality
 
 - **Non-Linear State-Space Modeling:** Variational autoencoder methods for learning non-linear dynamics.
 - **Manifold Latent Spaces:** Supports both standard and general geometries and topologies for the embeddings.
@@ -20,7 +20,7 @@ Deep learning approaches for nonlinear dynamics and embedding maps into general 
 - **Adjoint Methods for General Latent Spaces:** Provides approaches for handling general latent spaces through solving adjoint problems.
 - **Modularity:** Readily supports use within existing models and data-processing pipelines.
 
-#### 🤖 __Quick Start__
+#### ⚡ __Quick Start__
 
 *Method 1:* Install for python using pip
 
