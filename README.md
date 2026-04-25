@@ -79,22 +79,6 @@ R. Lopez and P. J. Atzberger, Journal of Computational Physics, 114127, (2025),
 }
 ```
 
-*GD-VAEs: Geometric Dynamic Variational Autoencoders for 
-Learning Non-linear Dynamics and Dimension Reductions,*
-R. Lopez and P. J. Atzberger, arXiv:2206.05183, (2022), 
-[[arXiv]](http://arxiv.org/abs/2206.05183).
-```
-@article{lopez_atzberger_gdvae_2022,
-  title={GD-VAEs: Geometric Dynamic Variational Autoencoders for 
-         Learning Non-linear Dynamics and Dimension Reductions},
-  author={Ryan Lopez, Paul J. Atzberger},
-  journal={arXiv:2206.05183},  
-  month={June},
-  year={2022},
-  url={http://arxiv.org/abs/2206.05183}
-}
-```
-
 __Acknowledgements__
 This work was supported by grants from DOE Grant ASCR PHILMS DE-SC0019246 
 and NSF Grant DMS-1616353.
